@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h1 class="text-center text-white">Redes Neuronales Compuerta XOR</h1>
+        <div class="row">
+            <div class="col-6 mt-5">
+                <h1 class="text-white text-center">Tabla de verdad XOR</h1>
+                <!-- tabla de verdad XOR -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>X1</th>
+                            <th>X2</th>
+                            <th>D</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-primary text-white">
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- tabla de pesos y umbral -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>W1</th>
+                            <th>W2</th>
+                            <th>WB</th>
+                            <th>UMBRAL</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-primary">
+                        <tr>
+                            <td>
+                                <input class="form-control" id="peso1" placeholder="W1" type="text">
+                            </td>
+                            <td>
+                                <input class="form-control" id="peso2" placeholder="W2" type="text">
+                            </td>
+                            <td>
+                                <input class="form-control" id="peso3" placeholder="WB" type="text">
+                            </td>
+                            <td>
+                                <input class="form-control" id="valordeagregado" placeholder="UMBRAL" type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary form-control" onclick="validarcampos()">Cargar Pesos</button>
+                <table class="table mt-4">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>W1</th>
+                            <th>W2</th>
+                            <th>WB</th>
+                            <th>UMBRAL</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-primary">
+                        <tr>
+                            <td> <small class="text-white" id="pesos1"></small> </td>
+                            <td> <small class="text-white" id="pesos2"></small> </td>
+                            <td> <small class="text-white" id="pesos3"></small> </td>
+                            <td> <small class="text-white" id="valordeagregados"></small> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 mt-5">
+                <h1 class="text-white text-center">Tabla de verdad AND</h1>
+                <!-- tabla de verdad AND -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>X1</th>
+                            <th>X2</th>
+                            <th>D</th>
+                            <th>Salida</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosand1()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosand2()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosand3()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosand4()">>></button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- tabla de resultado de la AND -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Σ</th>
+                            <th class="text-center">Resultados</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>
+                                <small id="pruebaand"></small>
+                            </td>
+                            <td>
+                                <p>Salida = <small id="pruebaand2"></small> </p>
+
+                            </td>
+                            <td>
+                                <p>Salida Esperada = <small id="esperadaand"></small>
+                                </p>
+
+                            </td>
+                            <td>
+                                <p>Resultado Esperado =
+                                    <small id="resultadoand"></small>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class="text-white text-center">Tabla de verdad NAND</h1>
+                <!-- tabla de verdad de la NAND -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>X1</th>
+                            <th>X2</th>
+                            <th>D</th>
+                            <th>Salida</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosnand1()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosnand2()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosnand3()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosnand4()">>></button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- tabla de resultado de la NAND -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Σ</th>
+                            <th class="text-center">Resultados</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>
+                                <small id="pruebanand"></small>
+                            </td>
+                            <td>
+                                <p>Salida = <small id="pruebanand2"></small> </p>
+
+                            </td>
+                            <td>
+                                <p>Salida Esperada = <small id="esperadanand"></small>
+                                </p>
+
+                            </td>
+                            <td>
+                                <p>Resultado Esperado =
+                                    <small id="resultadonand"></small>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class="text-white text-center">Tabla de verdad OR</h1>
+                <!-- tabla de verdad de la OR -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>X1</th>
+                            <th>X2</th>
+                            <th>D</th>
+                            <th>Salida</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosor1()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosor2()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosor3()">>></button> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td> <button class="btn btn-danger" onclick="enviodatosor4()">>></button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- tabla de resultado de la OR -->
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Σ</th>
+                            <th class="text-center">Resultados</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-success">
+                        <tr>
+                            <td>
+                                <small id="pruebaor"></small>
+                            </td>
+                            <td>
+                                <p>Salida = <small id="pruebaor2"></small> </p>
+
+                            </td>
+                            <td>
+                                <p>Salida Esperada = <small id="esperadaor"></small>
+                                </p>
+
+                            </td>
+                            <td>
+                                <p>Resultado Esperado =
+                                    <small id="resultadoor"></small>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="xnor-compuerta.js"></script>
+
+    <!-- libreria -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+</body>
+
+</html>
